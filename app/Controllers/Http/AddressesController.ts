@@ -33,7 +33,7 @@ export default class AddressesController {
     })
 
     return {
-      ...address,
+      ...address.toJSON(),
     }
   }
 
@@ -53,7 +53,7 @@ export default class AddressesController {
     }
 
     return {
-      ...address,
+      ...address.toJSON(),
     }
   }
 
@@ -96,7 +96,7 @@ export default class AddressesController {
     await address.save()
 
     return {
-      ...address,
+      ...address.toJSON(),
     }
   }
 
