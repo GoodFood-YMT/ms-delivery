@@ -21,9 +21,13 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/adresses', 'AddressesController.index')
-  Route.post('/adresses', 'AddressesController.store')
-  Route.get('/adresses/:id', 'AddressesController.show')
-  Route.patch('/adresses/:id', 'AddressesController.update')
-  Route.delete('/adresses/:id', 'AddressesController.destroy')
+  Route.get('/addresses', 'AddressesController.index')
+  Route.post('/addresses', 'AddressesController.store')
+  Route.get('/addresses/:id', 'AddressesController.show')
+  Route.patch('/addresses/:id', 'AddressesController.update')
+  Route.delete('/addresses/:id', 'AddressesController.destroy')
+
+  Route.post('/deliveries', 'DeliveriesController.store')
+  Route.get('/deliveries/:id', 'DeliveriesController.show')
+  Route.patch('/deliveries/:id', 'DeliveriesController.update')
 }).prefix('delivery')
