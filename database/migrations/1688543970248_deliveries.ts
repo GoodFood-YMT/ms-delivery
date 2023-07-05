@@ -1,5 +1,4 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
-import { DeliveryStatus } from 'App/Enums/DeliveryStatus'
 
 export default class extends BaseSchema {
   protected tableName = 'deliveries'
@@ -8,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.string('id').primary()
 
-      table.enum('status', [Object.values(DeliveryStatus)]).notNullable()
+      table.string('status').notNullable()
       table.string('address_id').references('id').inTable('addresses').notNullable()
       table.string('deliverer_id').notNullable()
 
