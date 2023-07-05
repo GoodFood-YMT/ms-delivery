@@ -10,6 +10,7 @@ export default class extends BaseSchema {
 
       table.enum('status', [Object.values(DeliveryStatus)]).notNullable()
       table.string('address_id').references('id').inTable('addresses').notNullable()
+      table.string('deliverer_id').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

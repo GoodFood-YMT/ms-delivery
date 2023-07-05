@@ -12,6 +12,9 @@ export default class Delivery extends BaseModel {
   @column()
   public addressId: string
 
+  @column()
+  public delivererId: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

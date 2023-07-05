@@ -27,6 +27,7 @@ export default class CreateDeliveryValidator {
   public schema = schema.create({
     status: schema.enum([...Object.values(DeliveryStatus)]),
     addressId: schema.string(),
+    delivererId: schema.string(),
   })
 
   /**
