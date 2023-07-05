@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ms-delivery-db-persistent-volume
+  labels:
+    type: local
+    app: ms-delivery-db
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: '/Users/tombrulin/Documents/CESI/GoodFood/volumes/ms-delivery/db'

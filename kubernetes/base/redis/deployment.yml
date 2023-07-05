@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-delivery-cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-delivery-cache
+  template:
+    metadata:
+      labels:
+        app: ms-delivery-cache
+    spec:
+      containers:
+        - name: ms-delivery-cache
+          image: redis
+          ports:
+            - containerPort: 6379
+          envFrom:
+            - configMapRef:
+                name: ms-delivery-cache-config
+          resources: {}

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-delivery-db-config
+  labels:
+    app: ms-delivery-db
+data:
+  POSTGRES_DB: ms-delivery
+  POSTGRES_USER: api
+  POSTGRES_PASSWORD: postgres123

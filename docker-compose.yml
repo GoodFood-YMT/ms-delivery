@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    hostname: redis
+    container_name: redis
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    volumes:
+      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432

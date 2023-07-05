@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ms-delivery
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: goodfood.localdev.me
+      http:
+        paths:
+          - pathType: Prefix
+            path: /delivery/
+            backend:
+              service:
+                name: ms-delivery
+                port:
+                  number: 80

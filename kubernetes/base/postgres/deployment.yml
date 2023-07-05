@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-delivery-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-delivery-db
+  template:
+    metadata:
+      labels:
+        app: ms-delivery-db
+    spec:
+      containers:
+        - name: ms-delivery-db
+          image: postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: ms-delivery-db-config
+          volumeMounts:
+            - mountPath: /var/lib/postgres/data
+              name: db-data
+          resources: {}
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: ms-delivery-db-volume-claim

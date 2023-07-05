@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-delivery
+  labels:
+    app: ms-delivery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-delivery
+  template:
+    metadata:
+      labels:
+        app: ms-delivery
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: ms-delivery-config
+            - secretRef:
+                name: ms-delivery-secret
+          image: yasinkara/ms-delivery:latest
+          imagePullPolicy: Always
+          name: ms-delivery
+          command: ['/bin/sh']
+          args: ['-c', 'node ace migration:run --force;node ace db:seed;dumb-init node server.js']
+          ports:
+            - containerPort: 3333
+          resources: {}
+      initContainers:
+        - name: check-db-ready
+          image: postgres:9.6.5
+          command:
+            [
+              'sh',
+              '-c',
+              'until pg_isready -h ms-delivery-db -p 5432; do echo waiting for database; sleep 2; done;',
+            ]
+      restartPolicy: Always
