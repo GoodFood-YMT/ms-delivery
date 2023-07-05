@@ -12,7 +12,7 @@ export default class DeliveriesController {
     })
 
     return {
-      ...delivery,
+      ...delivery.toJSON(),
     }
   }
 
@@ -26,7 +26,7 @@ export default class DeliveriesController {
     }
 
     return {
-      ...delivery,
+      ...delivery.toJSON(),
     }
   }
 
@@ -44,7 +44,7 @@ export default class DeliveriesController {
     await delivery.save()
 
     return {
-      ...delivery,
+      ...delivery.toJSON(),
     }
   }
 }
