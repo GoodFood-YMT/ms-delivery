@@ -30,4 +30,9 @@ export default Env.rules({
   REDIS_HOST: Env.schema.string({ format: 'host' }),
   REDIS_PORT: Env.schema.number(),
   REDIS_PASSWORD: Env.schema.string.optional(),
+  RABBITMQ_HOSTNAME: Env.schema.string(),
+  RABBITMQ_USER: Env.schema.string(),
+  RABBITMQ_PASSWORD: Env.schema.string(),
+  RABBITMQ_PORT: Env.schema.number(),
+  RABIITMQ_PROTOCOL: Env.schema.string(),
 })
