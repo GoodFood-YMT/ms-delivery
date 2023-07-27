@@ -2,13 +2,14 @@ import { DateTime } from 'luxon'
 import { BaseModel, afterCreate, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm'
 import { cuid } from '@ioc:Adonis/Core/Helpers'
 import Rabbit from '@ioc:Adonis/Addons/Rabbit'
+import { DeliveryStatus } from 'App/Enums/DeliveryStatus'
 
 export default class Delivery extends BaseModel {
   @column({ isPrimary: true })
   public id: string
 
   @column()
-  public status: string
+  public status: DeliveryStatus
 
   @column()
   public addressId: string

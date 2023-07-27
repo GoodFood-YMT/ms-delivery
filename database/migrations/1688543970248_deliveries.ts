@@ -1,4 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import { DeliveryStatus } from 'App/Enums/DeliveryStatus'
 
 export default class extends BaseSchema {
   protected tableName = 'deliveries'
@@ -7,9 +8,10 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.string('id').primary()
 
-      table.string('status').notNullable()
+      table.enum('status', Object.values(DeliveryStatus)).notNullable()
       table.string('address_id').references('id').inTable('addresses').notNullable()
-      table.string('deliverer_id').notNullable()
+      table.string('deliverer_id').nullable()
+      table.string('order_id').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

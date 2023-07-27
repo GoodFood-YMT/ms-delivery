@@ -1,5 +1,5 @@
-export const DeliveryStatus = {
-  PENDING: 'pending',
-  DELIVERING: 'delivering',
-  DELIVERED: 'delivered',
-} as const
+export enum DeliveryStatus {
+  PENDING = 'pending',
+  DELIVERING = 'delivering',
+  DELIVERED = 'delivered',
+}
