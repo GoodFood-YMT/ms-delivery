@@ -8,7 +8,10 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.string('id').primary()
 
-      table.enum('status', Object.values(DeliveryStatus)).notNullable()
+      table
+        .enum('status', Object.values(DeliveryStatus))
+        .defaultTo(DeliveryStatus.PENDING)
+        .notNullable()
       table.string('address_id').references('id').inTable('addresses').notNullable()
       table.string('deliverer_id').nullable()
       table.string('order_id').notNullable()

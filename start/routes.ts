@@ -27,7 +27,5 @@ Route.group(() => {
   Route.patch('/addresses/:id', 'AddressesController.update')
   Route.delete('/addresses/:id', 'AddressesController.destroy')
 
-  Route.post('/deliveries', 'DeliveriesController.store')
   Route.get('/deliveries/:id', 'DeliveriesController.show')
-  Route.patch('/deliveries/:id', 'DeliveriesController.update')
 }).prefix('delivery')
