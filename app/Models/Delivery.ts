@@ -20,6 +20,9 @@ export default class Delivery extends BaseModel {
   @column()
   public orderId: string
 
+  @column()
+  public restaurantId: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

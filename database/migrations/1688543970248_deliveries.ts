@@ -15,6 +15,7 @@ export default class extends BaseSchema {
       table.string('address_id').references('id').inTable('addresses').notNullable()
       table.string('deliverer_id').nullable()
       table.string('order_id').notNullable()
+      table.string('restaurant_id').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
