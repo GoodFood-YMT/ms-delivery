@@ -21,12 +21,22 @@ export default class DeliveriesController {
   }
 
   public async show({ request }: HttpContextContract) {
+    const restaurantId = request.header('RestaurantID')
+
+    if (!restaurantId) {
+      throw new Error('Unauthorized')
+    }
+
     const deliveryId = request.param('id')
 
     const delivery = await Delivery.find(deliveryId)
 
     if (!delivery) {
       throw new Error('Delivery not found')
+    }
+
+    if (delivery.restaurantId !== restaurantId) {
+      throw new Error('Unauthorized')
     }
 
     return {
