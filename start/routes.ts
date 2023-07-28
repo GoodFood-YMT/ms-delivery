@@ -29,4 +29,6 @@ Route.group(() => {
 
   Route.get('/deliveries', 'DeliveriesController.index')
   Route.get('/deliveries/:id', 'DeliveriesController.show')
+  Route.post('/deliveries/:id/take', 'DeliveriesController.takeDelivery')
+  Route.post('/deliveries/:id/complete', 'DeliveriesController.completeDelivery')
 }).prefix('delivery')
