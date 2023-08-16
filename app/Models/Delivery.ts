@@ -40,7 +40,7 @@ export default class Delivery extends BaseModel {
     await Rabbit.sendToQueue(
       'delivery.created',
       JSON.stringify({
-        id: delivery.id,
+        deliveryId: delivery.id,
         orderId: delivery.orderId,
       })
     )
