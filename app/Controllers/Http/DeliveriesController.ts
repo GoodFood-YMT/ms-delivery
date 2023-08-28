@@ -23,9 +23,10 @@ export default class DeliveriesController {
   }
 
   public async show({ request }: HttpContextContract) {
+    const role = request.header('Role')
     const restaurantId = request.header('RestaurantID')
 
-    if (!restaurantId) {
+    if (!role || (role === 'manager' && !restaurantId)) {
       throw new Error('Unauthorized')
     }
 
@@ -37,7 +38,7 @@ export default class DeliveriesController {
       throw new Error('Delivery not found')
     }
 
-    if (delivery.restaurantId !== restaurantId) {
+    if (role === 'manager' && delivery.restaurantId !== restaurantId) {
       throw new Error('Unauthorized')
     }
 
