@@ -71,6 +71,7 @@ export default class DeliveriesController {
     }
 
     delivery.status = DeliveryStatus.DELIVERING
+    delivery.save()
 
     return delivery
   }
