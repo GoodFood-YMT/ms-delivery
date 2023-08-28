@@ -48,9 +48,10 @@ export default class DeliveriesController {
   }
 
   public async takeDelivery({ request }: HttpContextContract) {
+    const userId = request.header('UserID')
     const restaurantId = request.header('RestaurantID')
 
-    if (!restaurantId) {
+    if (!userId || !restaurantId) {
       throw new Error('Unauthorized')
     }
 
@@ -71,6 +72,7 @@ export default class DeliveriesController {
     }
 
     delivery.status = DeliveryStatus.DELIVERING
+    delivery.delivererId = userId
     delivery.save()
 
     return delivery
