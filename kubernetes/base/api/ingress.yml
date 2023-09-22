@@ -14,7 +14,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /delivery/
+            path: /delivery
             backend:
               service:
                 name: ms-delivery
