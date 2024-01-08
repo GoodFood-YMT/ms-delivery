@@ -6,6 +6,7 @@
  */
 
 import type { CorsConfig } from '@ioc:Adonis/Core/Cors'
+
 const corsConfig: CorsConfig = {
   /*
   |--------------------------------------------------------------------------
@@ -55,7 +56,7 @@ const corsConfig: CorsConfig = {
   |
   | Following is the list of default methods. Feel free to add more.
   */
-  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
   /*
   |--------------------------------------------------------------------------
