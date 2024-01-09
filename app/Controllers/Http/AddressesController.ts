@@ -115,7 +115,8 @@ export default class AddressesController {
       throw new Error('Address not found')
     }
 
-    await address.delete()
+    address.userId = 'deleted'
+    address.save()
 
     return {
       success: true,
