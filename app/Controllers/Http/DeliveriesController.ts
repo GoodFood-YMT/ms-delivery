@@ -1,6 +1,7 @@
 import Rabbit from '@ioc:Adonis/Addons/Rabbit'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DeliveryStatus } from 'App/Enums/DeliveryStatus'
+import Address from 'App/Models/Address'
 import Delivery from 'App/Models/Delivery'
 
 export default class DeliveriesController {
@@ -42,8 +43,15 @@ export default class DeliveriesController {
       throw new Error('Unauthorized')
     }
 
+    const address = await Address.find(delivery.addressId)
+
+    if (!address) {
+      throw new Error('Address not found')
+    }
+
     return {
       ...delivery.toJSON(),
+      address: { ...address.toJSON() },
     }
   }
 
