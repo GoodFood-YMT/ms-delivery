@@ -21,6 +21,12 @@ export default class Address extends BaseModel {
   public country: string
 
   @column()
+  public lat: number
+
+  @column()
+  public lon: number
+
+  @column()
   public userId: string
 
   @beforeCreate()

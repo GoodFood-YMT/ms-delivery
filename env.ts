@@ -35,4 +35,5 @@ export default Env.rules({
   RABBITMQ_PASSWORD: Env.schema.string(),
   RABBITMQ_PORT: Env.schema.number(),
   RABIITMQ_PROTOCOL: Env.schema.string(),
+  GEOAPIFY_TOKEN: Env.schema.string(),
 })

@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { getAddressCoords } from 'App/AddressApi'
 import Address from 'App/Models/Address'
 import CreateAddressValidator from 'App/Validators/CreateAddressValidator'
 import UpdateAddressValidator from 'App/Validators/UpdateAddressValidator'
@@ -27,8 +28,14 @@ export default class AddressesController {
 
     const payload = await request.validate(CreateAddressValidator)
 
+    const getCoordinates = await getAddressCoords(
+      `${payload.street} ${payload.zipCode} ${payload.city} ${payload.country}`
+    )
+
     const address = await Address.create({
       ...payload,
+      lat: getCoordinates.lat,
+      lon: getCoordinates.lon,
       userId,
     })
 
@@ -92,6 +99,13 @@ export default class AddressesController {
     if (payload.country) {
       address.country = payload.country
     }
+
+    const getCoordinates = await getAddressCoords(
+      `${payload.street} ${payload.zipCode} ${payload.city} ${payload.country}`
+    )
+
+    address.lat = getCoordinates.lat
+    address.lon = getCoordinates.lon
 
     await address.save()
 

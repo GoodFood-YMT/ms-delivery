@@ -13,6 +13,9 @@ export default class extends BaseSchema {
       table.string('city').notNullable()
       table.string('country').notNullable()
 
+      table.decimal('lat').notNullable()
+      table.decimal('lon').notNullable()
+
       table.string('user_id').notNullable()
     })
   }
