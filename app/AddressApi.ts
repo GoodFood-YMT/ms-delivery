@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import Env from '@ioc:Adonis/Core/Env'
 
 export async function getAddressCoords(address: string) {
