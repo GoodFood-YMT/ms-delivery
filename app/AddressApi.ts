@@ -1,13 +1,15 @@
-import env from 'env'
 import fetch from 'node-fetch'
+import Env from '@ioc:Adonis/Core/Env'
 
 export async function getAddressCoords(address: string) {
-  var requestOptions = {
+  const requestOptions = {
     method: 'GET',
   }
 
   const response = await fetch(
-    `https://api.geoapify.com/v1/geocode/search?text=${address}&apiKey=${env.GEOAPIFY_TOKEN}`,
+    `https://api.geoapify.com/v1/geocode/search?text=${address}&apiKey=${Env.get(
+      'GEOAPIFY_TOKEN'
+    )}`,
     requestOptions
   )
 
