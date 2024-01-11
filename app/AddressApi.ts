@@ -12,16 +12,24 @@ export async function getAddressCoords(address: string) {
     requestOptions
   )
 
-  const data = await response.json()
+  const data = (await response.json()) as Root
 
-  return data as Result
+  let lat = 0
+  let lon = 0
+
+  if (data.features.length > 0) {
+    lat = data.features[0].properties.lat
+    lon = data.features[0].properties.lon
+  }
+
+  return { lat, lon }
 }
 
 export interface Root {
-  results: Result[]
-}
-
-export interface Result {
-  lon: number
-  lat: number
+  features: Array<{
+    properties: {
+      lat: number
+      lon: number
+    }
+  }>
 }
