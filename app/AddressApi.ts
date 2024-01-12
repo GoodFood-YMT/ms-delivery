@@ -6,7 +6,7 @@ export async function getAddressCoords(address: string) {
   }
 
   const response = await fetch(
-    `https://api.geoapify.com/v1/geocode/search?text=${address}&apiKey=${Env.get(
+    `https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${Env.get(
       'GEOAPIFY_TOKEN'
     )}`,
     requestOptions
@@ -17,19 +17,17 @@ export async function getAddressCoords(address: string) {
   let lat = 0
   let lon = 0
 
-  if (data.features.length > 0) {
-    lat = data.features[0].properties.lat
-    lon = data.features[0].properties.lon
+  if (data.results.length > 0) {
+    lat = data.results[0].lat
+    lon = data.results[0].lon
   }
 
   return { lat, lon }
 }
 
 export interface Root {
-  features: Array<{
-    properties: {
-      lat: number
-      lon: number
-    }
+  results: Array<{
+    lat: number
+    lon: number
   }>
 }
